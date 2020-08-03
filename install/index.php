@@ -1,8 +1,8 @@
 <?php
 
 define('DEBUG', 2);
-define('APP_PATH', realpath(dirname(__FILE__).'/../').'/');
-define('INSTALL_PATH', dirname(__FILE__).'/');
+define('APP_PATH', realpath(__DIR__ . '/../') . '/');
+define('INSTALL_PATH', __DIR__.'/');
 
 define('MESSAGE_HTM_PATH', INSTALL_PATH.'view/htm/message.htm');
 
@@ -78,12 +78,12 @@ if(empty($action)) {
 	if($method == 'GET') {
 
 		$succeed = 1;
-		$mysql_support = function_exists('mysql_connect');
+		$mysqli_support = function_exists('mysqli_connect');
 		$pdo_mysql_support = extension_loaded('pdo_mysql');
 		$myisam_support = extension_loaded('pdo_mysql');
 		$innodb_support = extension_loaded('pdo_mysql');
 
-		(!$mysql_support && !$pdo_mysql_support) AND message(-1, lang('evn_not_support_php_mysql'));
+		(!$mysqli_support && !$pdo_mysql_support) AND message(-1, lang('evn_not_support_php_mysql'));
 
 		include INSTALL_PATH."view/htm/db.htm";
 
@@ -131,8 +131,8 @@ if(empty($action)) {
 		$r = db_connect($db);
 		if($r === FALSE) {
 			if($errno == 1049 || $errno == 1045) {
-				if($type == 'mysql') {
-					mysql_query("CREATE DATABASE $name");
+				if($type == 'mysqli') {
+					mysqli_query($db->link, "CREATE DATABASE $name");
 					$r = db_connect($db);
 				} elseif($type == 'pdo_mysql') {
 					if(strpos(':', $host) !== FALSE) {

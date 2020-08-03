@@ -127,7 +127,7 @@ function xn_safe_word($s, $len) {
 	param_force($arr, array(0));
 */
 function param_force($val, $defval, $htmlspecialchars = TRUE, $addslashes = FALSE) {
-	$get_magic_quotes_gpc = _SERVER('get_magic_quotes_gpc');
+	$get_magic_quotes_gpc = 0;//_SERVER('get_magic_quotes_gpc');
 	if(is_array($defval)) {
 		$defval = empty($defval) ? '' : $defval[0]; // 数组的第一个元素，如果没有则为空字符串
 		if(is_array($val)) {
@@ -138,7 +138,6 @@ function param_force($val, $defval, $htmlspecialchars = TRUE, $addslashes = FALS
 					if(is_string($defval)) {
 						//$v = trim($v);
 						$addslashes AND !$get_magic_quotes_gpc && $v = addslashes($v);
-						!$addslashes AND $get_magic_quotes_gpc && $v = stripslashes($v);
 						$htmlspecialchars AND $v = htmlspecialchars($v);
 					} else {
 						$v = intval($v);
@@ -155,7 +154,6 @@ function param_force($val, $defval, $htmlspecialchars = TRUE, $addslashes = FALS
 			if(is_string($defval)) {
 				//$val = trim($val);
 				$addslashes AND !$get_magic_quotes_gpc && $val = addslashes($val);
-				!$addslashes AND $get_magic_quotes_gpc && $val = stripslashes($val);
 				$htmlspecialchars AND $val = htmlspecialchars($val);
 			} else {
 				$val = intval($val);
