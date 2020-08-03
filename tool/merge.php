@@ -1,7 +1,7 @@
 <?php
 // 合并 XiunoPHP
 
-$dir = '../xiunophp/';
+$dir = __DIR__.'/../xiunophp/';
 
 
 $s = php_strip_whitespace($dir.'db_mysql.class.php');
