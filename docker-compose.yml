@@ -1,0 +1,18 @@
+version: "3.4"
+
+x-env:
+  &env-setting
+    env_name: dev
+    env_memory_limit: 64M
+
+services:
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args: *env-setting
+        volumes: #多个配置文件的volumes配置会取并集
+            - ./deploy/stages/common/nginx:/etc/nginx/conf.d:ro
+#            - .:/app #dev环境才需要此配置
+
+
