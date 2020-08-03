@@ -17,7 +17,7 @@ if(DEBUG == 3) {
 }
 */
 
-define('ADMIN_PATH', dirname(__FILE__).'/'); // __DIR__
+define('ADMIN_PATH', __DIR__.'/');
 define('MESSAGE_HTM_PATH', ADMIN_PATH.'view/htm/message.htm');
 
 define('SKIP_ROUTE', TRUE);

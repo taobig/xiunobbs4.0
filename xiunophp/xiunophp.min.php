@@ -12,7 +12,7 @@
 
 !defined('DEBUG') AND define('DEBUG', 1); // 1: 开发模式， 2: 线上调试：日志记录，0: 关闭
 !defined('APP_PATH') AND define('APP_PATH', './');
-!defined('XIUNOPHP_PATH') AND define('XIUNOPHP_PATH', dirname(__FILE__).'/');
+!defined('XIUNOPHP_PATH') AND define('XIUNOPHP_PATH', __DIR__.'/');
 
 function_exists('ini_set') AND ini_set('display_errors', DEBUG ? '1' : '0');
 error_reporting(DEBUG ? E_ALL : 0);
